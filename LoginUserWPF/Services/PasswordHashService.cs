@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LoginUserWPF.Services
 {
-    internal class PasswordHashService
+    public class PasswordHashService
     {
+
     }
 }

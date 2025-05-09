@@ -1,4 +1,4 @@
-﻿<Window x:Class="LoginUserWPF.View.RegisterView"
+﻿<Window x:Name="RegisterWindow" x:Class="LoginUserWPF.View.RegisterView"
         Style="{StaticResource MaterialDesignWindow}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:LoginUserWPF.View"
         mc:Ignorable="d"
         Title="Register" Height="550" Width="544">
-    <Grid>
+    <Grid x:Name="RegisterMainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -26,7 +26,7 @@
             <RowDefinition Height="1.3*"/>
         </Grid.RowDefinitions>
         
-        <TextBlock 
+        <TextBlock x:Name="RegisterTitle" 
             TextWrapping="Wrap" 
             Text="Register now" 
             FontSize="24" Grid.Column="2" 
@@ -38,17 +38,18 @@
         />
         
         <!-- Grid for SpaceName-->
-        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4">
+        <Grid x:Name="RegisterNameInputGrid" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label 
+            <Label x:Name="RegisterLabelName" 
                 Content="Name" 
                 Grid.Row="0" 
                 VerticalAlignment="Top" 
                 FontSize="18"
+                Padding="0"
             />
             <TextBox 
                 x:Name="RegisterInputName" 
@@ -61,17 +62,18 @@
         </Grid>
 
         <!-- Grid for SpaceEmail-->
-        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4">
+        <Grid x:Name="RegisterEmailInputGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label 
+            <Label x:Name="RegisterLabelEmail" 
                 Content="Email" 
                 Grid.Row="0" 
                 VerticalAlignment="Top" 
                 FontSize="18"
+                Padding="0"
             />
             <TextBox 
                 x:Name="RegisterInputEmail" 
@@ -84,17 +86,18 @@
         </Grid>
 
         <!-- Grid for SpacePassword-->
-        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4">
+        <Grid x:Name="RegisterPasswordInputGrid" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label 
+            <Label x:Name="RegisterLabelPassword" 
                 Content="Password" 
                 Grid.Row="0" 
                 VerticalAlignment="Top" 
                 FontSize="18"
+                Padding="0"
             />
             <PasswordBox 
                 x:Name="RegisterInputPassword" 
@@ -107,7 +110,7 @@
         </Grid>
 
         <!-- Grid for SpaceAge and SpaceGender-->
-        <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4">
+        <Grid x:Name="RegisterUserDemographicsInputGrid" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -117,15 +120,16 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label 
+            <Label x:Name="RegisterLabelGender" 
                 Content="Gender" 
                 Grid.Row="0" 
                 Grid.Column="0" 
                 VerticalAlignment="Top" 
                 FontSize="18"
+                Padding="0"
             />
             <ComboBox 
-                x:Name="RegisterInputGender" 
+                x:Name="RegisterComboboxGender" 
                 Text="{}" 
                 FontSize="18" 
                 VerticalAlignment="Top" 
@@ -142,12 +146,13 @@
                 
             </ComboBox>
 
-            <Label 
+            <Label x:Name="RegisterLabelAge" 
                 Content="Age" 
                 Grid.Row="0" 
                 Grid.Column="1" 
                 VerticalAlignment="Top" 
                 FontSize="18"
+                Padding="0"
             />
             <TextBox 
                 x:Name="RegisterInputAge" 
@@ -160,7 +165,7 @@
                 Margin="0 0 10 0"
             />
         </Grid>
-        <Button Content="Confirm" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"/>
+        <Button x:Name="RegisterButtonConfirm" Content="Confirm" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
