@@ -1,4 +1,4 @@
-﻿<Window x:Name="LoginWindow" x:Class="LoginUserWPF.MainWindow"
+﻿<Window x:Name="LoginMainWindow" x:Class="LoginUserWPF.LoginWindow"
         Style="{StaticResource MaterialDesignWindow}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -37,7 +37,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label x:Name="LoginLabelNameInput" Content="Name" FontSize="18"  VerticalAlignment="Bottom" Grid.Row="0" Width="Auto" Height="30" Padding="0 4"/>
-            <TextBox x:Name="LoginInputName" Text="{Binding Username}" FontSize="18" VerticalAlignment="Top" Grid.Row="1" materialDesign:HintAssist.HelperText="Enter your name"/>
+            <TextBox x:Name="LoginInputName" Text="{Binding UserName}" FontSize="18" VerticalAlignment="Top" Grid.Row="1" materialDesign:HintAssist.HelperText="Enter your name"/>
 
         </Grid>
 
@@ -48,7 +48,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label x:Name="LoginLabelEmailInput"  Content="Email" FontSize="18" VerticalAlignment="Center" Width="Auto" Height="30" Grid.ColumnSpan="2" Margin="0 10" Padding="0 4"/>
-            <TextBox x:Name="LoginInputEmail" Text="{Binding Useremail}" FontSize="18" VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" materialDesign:HintAssist.HelperText="Enter your email"/>
+            <TextBox x:Name="LoginInputEmail" Text="{Binding UserEmail}" FontSize="18" VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" materialDesign:HintAssist.HelperText="Enter your email"/>
 
         </Grid>
 

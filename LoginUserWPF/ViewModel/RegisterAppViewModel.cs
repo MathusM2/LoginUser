@@ -8,9 +8,17 @@ namespace LoginUserWPF.ViewModel
 {
     public class RegisterAppViewModel
     {
+        private LoginAppViewModel _viewModel;
+
         public RegisterAppViewModel()
         {
+            _viewModel = new LoginAppViewModel();
+        }
 
+        public string UserName
+        {
+            get { return _viewModel.UserName; }
+            set { _viewModel.UserName = value; }
         }
     }
 }

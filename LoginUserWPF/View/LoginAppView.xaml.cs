@@ -14,12 +14,12 @@ using LoginUserWPF.ViewModel;
 namespace LoginUserWPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindowzz.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginWindow : Window
     {
         private readonly LoginAppViewModel _viewModel;
-        public MainWindow()
+        public LoginWindow()
         {
             InitializeComponent();
             _viewModel = new LoginAppViewModel();

@@ -11,28 +11,28 @@ namespace LoginUserWPF.ViewModel
 {
     public class LoginAppViewModel
     {
-        private LoginUserModel _loginUser;
+        private UserModel _loginUser;
 
         public LoginAppViewModel()
         {
-            _loginUser = new LoginUserModel();
+            _loginUser = new UserModel();
         }
 
-        public string Username
+        public string UserName
         {
-            get { return _loginUser.Username; }
-            set { _loginUser.Username = value; }
+            get { return _loginUser.UserName; }
+            set { _loginUser.UserName = value; }
         }
 
-        public string Useremail
+        public string UserEmail
         {
-            get { return _loginUser.Useremail; }
-            set { _loginUser.Useremail = value; }
+            get { return _loginUser.UserEmail; }
+            set { _loginUser.UserEmail = value; }
         }
 
         public string TryLogin(string password)
         {
-            if (string.IsNullOrEmpty(_loginUser.Username) || string.IsNullOrEmpty(_loginUser.Useremail) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(_loginUser.UserName) || string.IsNullOrEmpty(_loginUser.UserEmail) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Fill in all fields!");
             }
@@ -42,7 +42,7 @@ namespace LoginUserWPF.ViewModel
             }
             else
             {
-                string result = $"Hello Mr/Ms {_loginUser.Username}, your email is: \n{_loginUser.Useremail}";
+                string result = $"Hello Mr/Ms {_loginUser.UserName}, your email is: \n{_loginUser.UserEmail}";
                 return result;
             }
             return "Invalid acess! Try again";
