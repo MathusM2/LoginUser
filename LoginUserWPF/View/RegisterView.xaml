@@ -53,7 +53,8 @@
             />
             <TextBox 
                 x:Name="RegisterInputName" 
-                Text="{}" 
+                Text="{}"
+                MaxLength="100"
                 VerticalAlignment="Top" 
                 Grid.Row="1" 
                 materialDesign:HintAssist.HelperText="Enter your name"
@@ -63,6 +64,7 @@
 
         <!-- Grid for SpaceEmail-->
         <Grid x:Name="RegisterEmailInputGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
@@ -78,6 +80,7 @@
             <TextBox 
                 x:Name="RegisterInputEmail" 
                 Text="{}" 
+                MaxLength="100"
                 VerticalAlignment="Top" 
                 Grid.Row="1" 
                 materialDesign:HintAssist.HelperText="Enter your email" 
@@ -87,6 +90,7 @@
 
         <!-- Grid for SpacePassword-->
         <Grid x:Name="RegisterPasswordInputGrid" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
@@ -111,6 +115,7 @@
 
         <!-- Grid for SpaceAge and SpaceGender-->
         <Grid x:Name="RegisterUserDemographicsInputGrid" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4">
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -157,6 +162,7 @@
             <TextBox 
                 x:Name="RegisterInputAge" 
                 Text="{}" 
+                MaxLength="2"
                 FontSize="18" 
                 VerticalAlignment="Top" 
                 Grid.Row="1" 
@@ -165,7 +171,12 @@
                 Margin="0 0 10 0"
             />
         </Grid>
-        <Button x:Name="RegisterButtonConfirm" Content="Confirm" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"/>
+        <Button 
+            x:Name="RegisterButtonConfirm" 
+            Content="Confirm" 
+            Grid.Column="2" 
+            Grid.Row="5" 
+            Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

@@ -28,42 +28,138 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="RegisterLabel" TextWrapping="Wrap" Text="Login" Grid.Column="1" Width="62" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold" RenderTransformOrigin="-1.462,0.561" Grid.ColumnSpan="2" Height="32"/>
+        <TextBlock 
+            x:Name="RegisterLabel" 
+            TextWrapping="Wrap" 
+            Text="Login" 
+            Grid.Column="1" 
+            Width="62" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            FontSize="24" 
+            FontWeight="Bold" 
+            FontFamily="Yu Gothic UI Semibold" 
+            RenderTransformOrigin="-1.462,0.561" 
+            Grid.ColumnSpan="2" 
+            Height="32"
+        />
 
         <!--Grid for NameSpace -->
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5">
+            
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="LoginLabelNameInput" Content="Name" FontSize="18"  VerticalAlignment="Bottom" Grid.Row="0" Width="Auto" Height="30" Padding="0 4"/>
-            <TextBox x:Name="LoginInputName" Text="{Binding UserName}" FontSize="18" VerticalAlignment="Top" Grid.Row="1" materialDesign:HintAssist.HelperText="Enter your name"/>
+
+            <Label 
+                x:Name="LoginLabelNameInput" 
+                Content="Name" 
+                FontSize="18"  
+                VerticalAlignment="Bottom" 
+                Grid.Row="0" 
+                Width="Auto" 
+                Height="30" 
+                Padding="0 4"
+            />
+            <TextBox 
+                x:Name="LoginInputName" 
+                Text="{Binding UserName}" 
+                MaxLength="100" 
+                FontSize="18" 
+                VerticalAlignment="Top" 
+                Grid.Row="1" 
+                materialDesign:HintAssist.HelperText="Enter your name" 
+                UndoLimit="10"
+             />
 
         </Grid>
 
         <!-- Grid for EmailSpace -->
         <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="LoginLabelEmailInput"  Content="Email" FontSize="18" VerticalAlignment="Center" Width="Auto" Height="30" Grid.ColumnSpan="2" Margin="0 10" Padding="0 4"/>
-            <TextBox x:Name="LoginInputEmail" Text="{Binding UserEmail}" FontSize="18" VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" materialDesign:HintAssist.HelperText="Enter your email"/>
+            
+            <Label 
+                x:Name="LoginLabelEmailInput"  
+                Content="Email" 
+                FontSize="18" 
+                VerticalAlignment="Center" 
+                Width="Auto" 
+                Height="30" 
+                Grid.ColumnSpan="2" 
+                Margin="0 10" 
+                Padding="0 4"
+            />
+            <TextBox 
+                x:Name="LoginInputEmail" 
+                Text="{Binding UserEmail}" 
+                MaxLength="100" 
+                FontSize="18" 
+                VerticalAlignment="Center" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="2" 
+                materialDesign:HintAssist.HelperText="Enter your email"
+            />
 
         </Grid>
 
         <!--Grid for PasswordSpace -->
         <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,15,0,0">
+            
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="LoginLabelPassword" Content="Password" FontSize="18" VerticalAlignment="Bottom" Grid.Row="0" Width="Auto" Height="30" Margin="0" Padding="0 4"/>
-            <PasswordBox x:Name="LoginInputPassword" FontSize="18" VerticalAlignment="Top" Grid.RowSpan="2" Grid.Row="1" Grid.ColumnSpan="2" materialDesign:HintAssist.HelperText="Your password"/>
+            
+            <Label 
+                x:Name="LoginLabelPassword" 
+                Content="Password" 
+                FontSize="18" 
+                VerticalAlignment="Bottom" 
+                Grid.Row="0" 
+                Width="Auto" 
+                Height="30" 
+                Margin="0" 
+                Padding="0 4"
+            />
+            <PasswordBox 
+                x:Name="LoginInputPassword" 
+                FontSize="18" 
+                VerticalAlignment="Top" 
+                Grid.RowSpan="2" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="2" 
+                materialDesign:HintAssist.HelperText="Your password"
+            />
+            
         </Grid>
 
-        <Button x:Name="LoginConfirmButton" Content="Confirm" FontSize="16" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Margin="0,45,0,0" Width="100" Height="25" Click="LoginConfirmButton_Click"/>
-        <TextBlock x:Name="LoginLinkRegister"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Left">    
+        <Button 
+            x:Name="LoginConfirmButton" 
+            Content="Confirm" 
+            FontSize="16" 
+            Grid.Row="5" 
+            Grid.Column="1" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Bottom" 
+            Grid.ColumnSpan="2" 
+            Margin="0,45,0,0" 
+            Width="100" 
+            Height="25" 
+            Click="LoginConfirmButton_Click"
+        />
+        <TextBlock 
+            x:Name="LoginLinkRegister"  
+            Grid.Row="4" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="2" 
+            FontSize="12" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Left">    
             <Hyperlink TextDecorations="None"  Click="RegisterLink_Click">Register here</Hyperlink>
         </TextBlock>
     </Grid>
