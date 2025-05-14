@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LoginUserWPF.Helper;
+using LoginUserWPF.Services;
 using LoginUserWPF.View;
 using LoginUserWPF.ViewModel;
 
@@ -36,6 +38,11 @@ namespace LoginUserWPF
         {
             RegisterView registerView = new RegisterView();
             registerView.Show();
+            
+        }
+
+        private void OnFieldLostFocus(object sender, RoutedEventArgs e)
+        {
             
         }
     }

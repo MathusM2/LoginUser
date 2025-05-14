@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace LoginUserWPF.Models
 {
+    /// <summary>
+    /// Represents a user's data in the application, including name and email
+    /// </summary>
+    /// <remarks>This method is used to represent the user's data during login and user registration</remarks>
     class UserModel
     {
         private int Id;

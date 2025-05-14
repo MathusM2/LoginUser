@@ -9,6 +9,10 @@ using LoginUserWPF.Helper;
 
 namespace LoginUserWPF.Services
 {
+    /// <summary>
+    /// Validate the data entry, and returns the result validate
+    /// </summary>
+    /// <returns>Return a boolean and an error message</returns>
     public static class ValidateUserInput
     {
         public static (bool, string?) ValidateName(string name)
@@ -33,10 +37,14 @@ namespace LoginUserWPF.Services
             }
         }
 
+        /// <summary>
+        /// Validate email data
+        /// </summary>
+        /// <param name="email"></param>
         public static (bool, string?) ValidateEmail(string email)
         {
             string emailPattern = (@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-            Regex emailRegex = new Regex(email);
+            Regex emailRegex = new Regex(emailPattern);
 
             if (string.IsNullOrEmpty(email))
             {
@@ -70,7 +78,7 @@ namespace LoginUserWPF.Services
             {
                 return (false, "The password must be greater than 5 characters and less than 100 characters");
             }
-            switch (PasswordStrengthEvaluator.EvaluatePasswordStrength(password))
+            switch (PasswordStrengthEvaluator.Evaluate(password))
             {
                 case 1:
                     return (false, "Your password is very weak");

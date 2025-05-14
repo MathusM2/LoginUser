@@ -10,6 +10,9 @@ using System.Windows;
 
 namespace LoginUserWPF.Data
 {
+    /// <summary>
+    /// Initialize the database if it does not exist
+    /// </summary>
     public static class DatabaseInitializer
     {
         private const string DbFilePath = "users.db";
