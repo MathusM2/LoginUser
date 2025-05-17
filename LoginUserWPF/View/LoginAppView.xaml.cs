@@ -9,9 +9,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LoginUserWPF.Helper;
+using LoginUserWPF.Helper.Behaviors;
 using LoginUserWPF.Services;
 using LoginUserWPF.View;
 using LoginUserWPF.ViewModel;
+using MaterialDesignThemes.Wpf;
 
 namespace LoginUserWPF
 {
@@ -26,24 +28,18 @@ namespace LoginUserWPF
             InitializeComponent();
             _viewModel = new LoginAppViewModel();
             this.DataContext = _viewModel;
+            _viewModel.OpenRegisterWindowRequested += OpenRegisterWindow;
+        }
+        private void OpenRegisterWindow()
+        {
+            var registerWindow = new RegisterView();
+            registerWindow.Owner = this;
+            registerWindow.ShowDialog();
         }
 
         private void LoginConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-            string result = _viewModel.TryLogin(LoginInputPassword.Password);
-            MessageBox.Show(result);
-        }
-
-        private void RegisterLink_Click(object sender, RoutedEventArgs e)
-        {
-            RegisterView registerView = new RegisterView();
-            registerView.Show();
-            
-        }
-
-        private void OnFieldLostFocus(object sender, RoutedEventArgs e)
-        {
-            
+            _viewModel.TryLogin();
         }
     }
 }

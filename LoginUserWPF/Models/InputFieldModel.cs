@@ -7,17 +7,31 @@ using System.Threading.Tasks;
 
 namespace LoginUserWPF.Models
 {
+    /// <summary>
+    /// Model for the input field
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class InputFieldModel<T> : INotifyPropertyChanged
     {
-        public string _nameField;
-        public T _value;
-        public string _errorMessage;
-        public bool _hasError;
+        private T _value;
+        private string _Message;
+        private bool _hasError;
 
         public T Value
         {
             get { return _value; }
             set { _value = value; OnPropertyChanged(nameof(Value)); }
+        }
+        public bool hasError
+        {
+            get { return _hasError; }
+            set { _hasError = value; OnPropertyChanged(nameof(hasError)); }
+        }
+
+        public string Message
+        {
+            get { return _Message; }
+            set { _Message = value; OnPropertyChanged(nameof(Message)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

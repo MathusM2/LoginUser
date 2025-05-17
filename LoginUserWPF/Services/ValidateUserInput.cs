@@ -15,11 +15,15 @@ namespace LoginUserWPF.Services
     /// <returns>Return a boolean and an error message</returns>
     public static class ValidateUserInput
     {
+        /// <summary>
+        /// Validate name data
+        /// </summary>
+        /// <param name="name"></param>
         public static (bool, string?) ValidateName(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
-                return (false, "The field is required");
+                return (false, "Press your name");
             }
             else
             if (name.Length > 100)
@@ -33,10 +37,9 @@ namespace LoginUserWPF.Services
             }
             else
             {
-                return (true, null);
+                return (true, "");
             }
         }
-
         /// <summary>
         /// Validate email data
         /// </summary>
@@ -48,7 +51,7 @@ namespace LoginUserWPF.Services
 
             if (string.IsNullOrEmpty(email))
             {
-                return (false, "The field is required");
+                return (false, "Press your email");
             }
             else
             if (email.Length > 100)
@@ -59,7 +62,7 @@ namespace LoginUserWPF.Services
             if (!emailRegex.IsMatch(email))
             {
                 return (false, "Invalid format email!");
-            }
+            } 
             else
             {
                 return (true, null);
@@ -68,13 +71,12 @@ namespace LoginUserWPF.Services
 
         public static (bool, string?) ValidatePassword(string password)
         {
-            string passwordPattern = (@"^(?=.*[A-Z])(?=.*/d)(?=.*[^a-zA-Z0-9])");
-            if(string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(password))
             {
-                return (false, "The field is required");
+                return (false, "Press the password");
             }
             else
-            if(password.Length < 5 || password.Length > 100)
+            if (password.Length < 5 || password.Length > 100)
             {
                 return (false, "The password must be greater than 5 characters and less than 100 characters");
             }
@@ -120,7 +122,7 @@ namespace LoginUserWPF.Services
 
             if(string.IsNullOrEmpty(gender))
             {
-                return (false, "The field is required");
+                return (false, "Select your gender");
             }
             else
             if (!validGendersOptions.Contains(gender) || gender.GetType() != typeof(string))

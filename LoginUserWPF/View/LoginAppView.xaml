@@ -6,12 +6,14 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LoginUserWPF.ViewModel"
+        xmlns:local="clr-namespace:LoginUserWPF.View"
+        xmlns:model="clr-namespace:LoginUserWPF.ViewModel"
+        xmlns:controls="clr-namespace:LoginUserWPF.Controls"
         xmlns:behavior="clr-namespace:LoginUserWPF.Helper.Behaviors"
         mc:Ignorable="d"
         Title="Login App" Height="476" Width="409" MinHeight="435" MinWidth="445">
     <Window.DataContext>
-        <local:LoginAppViewModel/>
+        <model:LoginAppViewModel/>
     </Window.DataContext>
 
     <Grid x:Name="LoginMainGrid">
@@ -64,19 +66,17 @@
                 Height="30" 
                 Padding="0 4"
             />
-            <TextBox 
-                x:Name="LoginInputName" 
+            <controls:InputFieldControl
+                x:Name="LoginInputName"
                 Tag="InputName"
-                Text="{Binding UserName}" 
-                MaxLength="100" 
-                FontSize="18" 
-                VerticalAlignment="Top" 
+                Grid.RowSpan="2" 
                 Grid.Row="1"
-                materialDesign:HintAssist.HelperText="Enter your name"
-                UndoLimit="10" 
-                LostFocus="OnFieldLostFocus">
-            </TextBox>
-
+                materialDesign:HintAssist.HelperText="{Binding UserName.Message }"
+                HasError="{Binding UserName.hasError}">
+                <i:Interaction.Behaviors>
+                    <behavior:TextBoxLostFocusBehavior ValidationResult="{Binding UserName}"/>
+                </i:Interaction.Behaviors>
+            </controls:InputFieldControl>
         </Grid>
 
         <!-- Grid for EmailSpace -->
@@ -98,17 +98,17 @@
                 Margin="0 10" 
                 Padding="0 4"
             />
-            <TextBox 
-                x:Name="LoginInputEmail" 
+            <controls:InputFieldControl
+                x:Name="LoginInputEmail"
                 Tag="InputEmail"
-                Text="{Binding UserEmail}" 
-                MaxLength="100" 
-                FontSize="18" 
-                VerticalAlignment="Center" 
-                Grid.Row="1" 
-                Grid.ColumnSpan="2" 
-                materialDesign:HintAssist.HelperText="Enter your email"
-            />
+                Grid.Row="2"
+                Grid.RowSpan="2"
+                materialDesign:HintAssist.HelperText="{Binding UserEmail.Message}"
+                HasError="{Binding UserEmail.hasError}">
+                <i:Interaction.Behaviors>
+                    <behavior:TextBoxLostFocusBehavior ValidationResult="{Binding UserEmail}"/>
+                </i:Interaction.Behaviors>
+            </controls:InputFieldControl>
 
         </Grid>
 
@@ -167,7 +167,7 @@
             FontSize="12" 
             VerticalAlignment="Bottom" 
             HorizontalAlignment="Left">    
-                <Hyperlink TextDecorations="None"  Click="RegisterLink_Click">Register here</Hyperlink>
+                <Hyperlink TextDecorations="None" Command="{Binding OpenRegisterCommand}">Register here</Hyperlink>
         </TextBlock>
     </Grid>
 </Window>

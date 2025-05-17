@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using LoginUserWPF.Helper;
 using LoginUserWPF.Infraestructure.LoginUserWPF.Helper;
 using LoginUserWPF.Models;
@@ -18,6 +19,7 @@ namespace LoginUserWPF.ViewModel
 {
     public class LoginAppViewModel : INotifyPropertyChanged
     {
+        public ICommand OpenRegisterCommand { get;}
         private UserModel _loginUser;
         public InputFieldModel<string> UserName { get; set; } = new InputFieldModel<string>();
 
@@ -28,13 +30,19 @@ namespace LoginUserWPF.ViewModel
         public LoginAppViewModel()
         {
             _loginUser = new UserModel();
+            OpenRegisterCommand = new RelayCommand(OnOpenRegisterWindow);
         }
 
-        public string TryLogin(string password)
+        public void TryLogin()
         {
-            return "Foda";
+            
         }
+        public event Action OpenRegisterWindowRequested;
 
+        public void OnOpenRegisterWindow()
+        {
+            OpenRegisterWindowRequested?.Invoke();
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)

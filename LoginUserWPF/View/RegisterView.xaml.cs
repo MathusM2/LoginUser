@@ -23,10 +23,5 @@ namespace LoginUserWPF.View
         {
             InitializeComponent();
         }
-
-        private void RegisterInputPassword_SuggestionChosen(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-
-        }
     }
 }

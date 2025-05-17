@@ -6,8 +6,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoginUserWPF.View"
+        xmlns:model="clr-namespace:LoginUserWPF.ViewModel"
         mc:Ignorable="d"
         Title="Register" Height="550" Width="544">
+    <Window.DataContext>
+        <model:RegisterAppViewModel/>
+    </Window.DataContext>
+        
     <Grid x:Name="RegisterMainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -59,7 +64,7 @@
             />
             <TextBox 
                 x:Name="RegisterInputName" 
-                Text="{}"
+                Text="{Binding UserName}"
                 MaxLength="100"
                 VerticalAlignment="Top" 
                 Grid.Row="1" 
@@ -87,7 +92,7 @@
             />
             <TextBox 
                 x:Name="RegisterInputEmail" 
-                Text="{}" 
+                Text="{Binding UserEmail}" 
                 MaxLength="100"
                 VerticalAlignment="Top" 
                 Grid.Row="1" 
@@ -148,7 +153,7 @@
             />
             <ComboBox 
                 x:Name="RegisterComboboxGender" 
-                Text="{}" 
+                Text="{Binding UserGender}" 
                 FontSize="18" 
                 VerticalAlignment="Top" 
                 Grid.Row="1" 
@@ -177,7 +182,7 @@
             />
             <TextBox 
                 x:Name="RegisterInputAge" 
-                Text="{}" 
+                Text="{Binding UserAge}" 
                 MaxLength="2"
                 FontSize="18" 
                 VerticalAlignment="Top" 
