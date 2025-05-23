@@ -3,10 +3,13 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoginUserWPF.View"
         xmlns:model="clr-namespace:LoginUserWPF.ViewModel"
+        xmlns:behaviors="clr-namespace:LoginUserWPF.Helper.Behaviors"
+        xmlns:controls="clr-namespace:LoginUserWPF.Controls"
         mc:Ignorable="d"
         Title="Register" Height="550" Width="544">
     <Window.DataContext>
@@ -55,22 +58,26 @@
 
             <Label 
                 x:Name="RegisterLabelName" 
-                Tag="InputName"
+                Tag="InpuLabeltName"
                 Content="Name" 
                 Grid.Row="0" 
                 VerticalAlignment="Top" 
                 FontSize="18"
                 Padding="0"
             />
-            <TextBox 
-                x:Name="RegisterInputName" 
-                Text="{Binding UserName}"
-                MaxLength="100"
-                VerticalAlignment="Top" 
-                Grid.Row="1" 
-                materialDesign:HintAssist.HelperText="Enter your name"
+            <controls:InputFieldControl
+                x:Name="RegisterInputName"
+                Tag="InputName"
+                Grid.Row="1"
                 Margin="0 0 0 10"
-            />
+                Text="{Binding UserName.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                materialDesign:HintAssist.HelperText="{Binding UserName.Message}"
+                HasError="{Binding UserName.hasError}">
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxBehavior ValidationResult="{Binding UserName}"/>
+                </i:Interaction.Behaviors>
+            </controls:InputFieldControl>
+
         </Grid>
 
         <!-- Grid for SpaceEmail-->
@@ -83,22 +90,25 @@
 
             <Label 
                 x:Name="RegisterLabelEmail" 
-                Tag="InputEmail"
+                Tag="InputLabelEmail"
                 Content="Email" 
                 Grid.Row="0" 
                 VerticalAlignment="Top" 
                 FontSize="18"
                 Padding="0"
             />
-            <TextBox 
-                x:Name="RegisterInputEmail" 
-                Text="{Binding UserEmail}" 
-                MaxLength="100"
-                VerticalAlignment="Top" 
-                Grid.Row="1" 
-                materialDesign:HintAssist.HelperText="Enter your email" 
+            <controls:InputFieldControl
+                x:Name="RegisterInputEmail"
+                Tag="InputEmail"
+                Grid.Row="2"
                 Margin="0 0 0 10"
-            />
+                Text="{Binding UserEmail.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                materialDesign:HintAssist.HelperText="{Binding UserEmail.Message}"
+                HasError="{Binding UserEmail.hasError}">
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxBehavior ValidationResult="{Binding UserEmail}"/>
+                </i:Interaction.Behaviors>
+            </controls:InputFieldControl>
         </Grid>
 
         <!-- Grid for SpacePassword-->
@@ -109,9 +119,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
             <Label
                 x:Name="RegisterLabelPassword" 
-                Tag="InputPassword"
+                Tag="InputLabelPassword"
                 Content="Password" 
                 Grid.Row="0" 
                 VerticalAlignment="Top" 
@@ -122,10 +137,25 @@
                 x:Name="RegisterInputPassword" 
                 VerticalAlignment="Top" 
                 Grid.Row="1" 
+                Grid.Column="0"
+                Style="{StaticResource PasswordFieldErrorTheme}"
                 materialDesign:PasswordBoxAssist.IsPasswordRevealed="False"
-                materialDesign:HintAssist.HelperText="Enter your password"
-                Margin="0,0,193,0"
-            />
+                Margin="0,0,0,0">
+                <i:Interaction.Behaviors>
+                    <behaviors:PasswordBoxBehavior ValidationState="{Binding UserPassword}"/>
+                </i:Interaction.Behaviors>
+            </PasswordBox>
+            <TextBlock
+                x:Name="RegisterInputPasswordHelp"
+                Tag="TextBlockPasswordHelp"
+                Text="{Binding UserPassword.Message}"
+                FontSize="13"
+                Foreground="{DynamicResource MaterialDesignValidationErrorBrush}"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                >
+            </TextBlock>
         </Grid>
 
         <!-- Grid for SpaceAge and SpaceGender-->
@@ -143,7 +173,7 @@
             <!-- Gender Space -->
             <Label 
                 x:Name="RegisterLabelGender" 
-                Tag="InputGender"
+                Tag="InputLabelGender"
                 Content="Gender" 
                 Grid.Row="0" 
                 Grid.Column="0" 
@@ -153,26 +183,28 @@
             />
             <ComboBox 
                 x:Name="RegisterComboboxGender" 
-                Text="{Binding UserGender}" 
+                Tag="InputGender"
                 FontSize="18" 
                 VerticalAlignment="Top" 
                 Grid.Row="1" 
                 Grid.Column="0" 
-                materialDesign:HintAssist.HelperText="What is your gender?" 
-                Margin="0 0 10 0">
-                
-                <ComboBoxItem Tag="InputGenderChoiceNull" Content="Select" IsSelected="True"/>
-                <ComboBoxItem Tag="InputGenderChoiceMen" Content="Men"/>
-                <ComboBoxItem Tag="InputGenderChoiceWomen" Content="Women"/>
-                <ComboBoxItem Tag="InputGenderChoiceUndefined" Content="Undefined"/>
-                <ComboBoxItem Tag="InputGenderChoiceNotInformed" Content="I prefer not to say"/>
+                materialDesign:HintAssist.HelperText="{Binding UserGender.Message}" 
+                materialDesign:ValidationAssist.HasError="{Binding UserGender.hasError}"
+                IsEditable="false"
+                Margin="0 0 10 0"
+                ItemsSource="{Binding GenderOptions}"
+                SelectedItem="{Binding UserGender.Value, Mode=TwoWay}">
+
+                <i:Interaction.Behaviors>
+                    <behaviors:ComboBoxBehavior ValidationResult="{Binding UserGender}"/>
+                </i:Interaction.Behaviors>
                 
             </ComboBox>
 
             <!-- Age Space -->
             <Label 
                 x:Name="RegisterLabelAge" 
-                Tag="InputGender"
+                Tag="InputLabelGender"
                 Content="Age" 
                 Grid.Row="0" 
                 Grid.Column="1" 
@@ -180,17 +212,21 @@
                 FontSize="18"
                 Padding="0"
             />
-            <TextBox 
-                x:Name="RegisterInputAge" 
-                Text="{Binding UserAge}" 
-                MaxLength="2"
-                FontSize="18" 
-                VerticalAlignment="Top" 
-                Grid.Row="1" 
-                Grid.Column="1" 
-                materialDesign:HintAssist.HelperText="What is your age?" 
-                Margin="0 0 10 0"
-            />
+            <controls:InputFieldControl
+                x:Name="RegisterInputAge"
+                Tag="InputAge"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0 0 0 10"           
+                Text="{Binding UserAge.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                materialDesign:HintAssist.HelperText="{Binding UserAge.Message}"
+                HasError="{Binding UserAge.hasError}">
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxBehavior ValidationResult="{Binding UserAge}"/>
+                </i:Interaction.Behaviors>
+            </controls:InputFieldControl>
+
+
         </Grid>
         
         <!-- Register Button -->
@@ -199,7 +235,8 @@
             Content="Confirm" 
             Grid.Column="2" 
             Grid.Row="5" 
-            Grid.ColumnSpan="2"/>
+            Grid.ColumnSpan="2" 
+            Click="RegisterButtonConfirm_Click"/>
 
     </Grid>
 </Window>

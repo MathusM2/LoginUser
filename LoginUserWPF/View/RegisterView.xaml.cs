@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LoginUserWPF.Controls;
+using LoginUserWPF.ViewModel;
 
 namespace LoginUserWPF.View
 {
@@ -19,9 +21,21 @@ namespace LoginUserWPF.View
     /// </summary>
     public partial class RegisterView : Window
     {
+        private readonly RegisterAppViewModel _viewModel;
         public RegisterView()
         {
             InitializeComponent();
+            _viewModel = new RegisterAppViewModel();
+            this.DataContext = _viewModel;
+            
+        }
+
+        private void RegisterButtonConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            if (_viewModel.TryRegisterCommand.CanExecute(RegisterInputPassword.Password))
+            {
+                _viewModel.TryRegisterCommand.Execute(RegisterInputPassword.Password);
+            }
         }
     }
 }

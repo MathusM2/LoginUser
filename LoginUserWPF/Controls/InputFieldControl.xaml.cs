@@ -18,6 +18,8 @@ namespace LoginUserWPF.Controls
             DependencyProperty.Register("TextBoxStyle", typeof(Style), typeof(InputFieldControl), new PropertyMetadata(null));
         public static readonly DependencyProperty HasErrorProperty =
             DependencyProperty.Register("HasError", typeof(bool), typeof(InputFieldControl), new PropertyMetadata(false));
+        public static readonly DependencyProperty TextProperty = 
+            DependencyProperty.Register("Text", typeof(string), typeof(InputFieldControl), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public Style TextBoxStyle
         {
             get { return (Style)GetValue(StyleProperty); }
@@ -27,7 +29,12 @@ namespace LoginUserWPF.Controls
         {
             get { return (bool)GetValue(HasErrorProperty); }
             set { SetValue(HasErrorProperty, value); }
-        }   
+        }
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
         public TextBox InnerTextBox => InputField;
         public InputFieldControl()
         {

@@ -18,10 +18,9 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <TextBox
-            
+    <TextBox     
             x:Name="InputField"
-            Text="{Binding Value, Source={RelativeSource AncestorType=UserControl}, Mode=TwoWay}"
+            Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Style="{StaticResource InputFieldErrorStyle}"
             FontSize="18"
             VerticalAlignment="Top">

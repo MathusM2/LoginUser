@@ -18,10 +18,10 @@ namespace LoginUserWPF.Helper.Behaviors
     /// <summary>
     /// Behavior to validate the input field when it loses focus
     /// </summary>
-    public class TextBoxLostFocusBehavior : Behavior<InputFieldControl>
+    public class TextBoxBehavior : Behavior<InputFieldControl>
     {
         public static readonly DependencyProperty ValidationResultProperty =
-            DependencyProperty.Register("ValidationResult", typeof(InputFieldModel<string>), typeof(TextBoxLostFocusBehavior), new PropertyMetadata(null));
+            DependencyProperty.Register("ValidationResult", typeof(InputFieldModel<string>), typeof(TextBoxBehavior), new PropertyMetadata(null));
 
         public InputFieldModel<string> ValidationResult
         {

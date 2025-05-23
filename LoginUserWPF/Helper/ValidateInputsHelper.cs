@@ -35,7 +35,7 @@ namespace LoginUserWPF.Helper
             else
             if (fieldName == "InputAge")
             {
-                return ValidateUserInput.ValidateAge(int.Parse(fieldText));
+                return ValidateUserInput.ValidateAge(fieldText);
             }
             else
             if(fieldName == "InputPassword")

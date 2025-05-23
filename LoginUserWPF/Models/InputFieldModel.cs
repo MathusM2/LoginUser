@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,13 @@ namespace LoginUserWPF.Models
         public T Value
         {
             get { return _value; }
-            set { _value = value; OnPropertyChanged(nameof(Value)); }
+            set
+            {
+                if (!Equals(_value, value))
+                {
+                    _value = value; OnPropertyChanged(nameof(Value));
+                }
+            }
         }
         public bool hasError
         {

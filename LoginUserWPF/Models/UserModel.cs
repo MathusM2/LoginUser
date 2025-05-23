@@ -10,13 +10,13 @@ namespace LoginUserWPF.Models
     /// Represents a user's data in the application, including name and email
     /// </summary>
     /// <remarks>This method is used to represent the user's data during login and user registration</remarks>
-    class UserModel
+    public class UserModel
     {
         private int Id;
         private string Name;
         private string Email;
         private string Gender;
-        private int Age;
+        private string Age;
 
         public int UserId
         {
@@ -38,14 +38,20 @@ namespace LoginUserWPF.Models
 
         public string UserGender
         {
-            get { return Email; }
-            set { Email = value; }
+            get { return Gender; }
+            set { Gender = value; }
         }
 
         public string UserAge
         {
-            get { return Email; }
-            set { Email = value; }
+            get { return Age; }
+            set
+            {
+                if (value != Age)
+                {
+                    Age = value;
+                }
+            }
         }
     }
 }

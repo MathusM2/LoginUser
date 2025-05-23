@@ -71,10 +71,11 @@
                 Tag="InputName"
                 Grid.RowSpan="2" 
                 Grid.Row="1"
+                Text="{Binding UserName.Value}"
                 materialDesign:HintAssist.HelperText="{Binding UserName.Message }"
                 HasError="{Binding UserName.hasError}">
                 <i:Interaction.Behaviors>
-                    <behavior:TextBoxLostFocusBehavior ValidationResult="{Binding UserName}"/>
+                    <behavior:TextBoxBehavior ValidationResult="{Binding UserName}"/>
                 </i:Interaction.Behaviors>
             </controls:InputFieldControl>
         </Grid>
@@ -103,10 +104,11 @@
                 Tag="InputEmail"
                 Grid.Row="2"
                 Grid.RowSpan="2"
+                Text="{Binding UserEmail.Value, Mode=TwoWay}"
                 materialDesign:HintAssist.HelperText="{Binding UserEmail.Message}"
                 HasError="{Binding UserEmail.hasError}">
                 <i:Interaction.Behaviors>
-                    <behavior:TextBoxLostFocusBehavior ValidationResult="{Binding UserEmail}"/>
+                    <behavior:TextBoxBehavior ValidationResult="{Binding UserEmail}"/>
                 </i:Interaction.Behaviors>
             </controls:InputFieldControl>
 

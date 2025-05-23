@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using LoginUserWPF.Helper;
+using LoginUserWPF.Models;
 
 namespace LoginUserWPF.Services
 {
@@ -69,7 +70,7 @@ namespace LoginUserWPF.Services
             }
         }
 
-        public static (bool, string?) ValidatePassword(string password)
+        public static (bool, string) ValidatePassword(string password)
         {
             if (string.IsNullOrEmpty(password))
             {
@@ -95,18 +96,19 @@ namespace LoginUserWPF.Services
             }
         }
 
-        public static (bool, string?) ValidateAge(int age)
+        public static (bool, string?) ValidateAge(string age)
         {
-            if(age < 0 || age.GetType() != typeof(int))
+            var ageValid = int.TryParse(age, out int ageParsed);
+            if (!ageValid)
             {
                 return (false, "Invalid age format");
             }
             else
-            if(age >= 100)
+            if(ageParsed >= 100)
             {
                 return (false, "Please check your age input — that seems unusually high");
             }
-            else if(age < 10)
+            else if(ageParsed < 10)
             {
                 return (false, "This age is not accepted, please press a valid age");
             }
@@ -119,10 +121,14 @@ namespace LoginUserWPF.Services
         public static (bool, string?) ValidateGender(string gender)
         {
             var validGendersOptions = new[] { "Men", "Women", "I don't prefer to say", "Other" };
-
+            if(gender == "Select")
+            {
+                return (false, "Select a gender");
+            }
+            else
             if(string.IsNullOrEmpty(gender))
             {
-                return (false, "Select your gender");
+                return (false, "Invalid selection");
             }
             else
             if (!validGendersOptions.Contains(gender) || gender.GetType() != typeof(string))
@@ -133,6 +139,51 @@ namespace LoginUserWPF.Services
             {
                 return (true, null);
             }
+        }
+
+        public static (bool, string?) ValidateUserModel(UserModel userModel, string pass)
+        {
+            var (isValidInputs, MessageInput) = ValidateUserModelInputs(userModel);
+            if (!isValidInputs)
+            {
+                return (false, MessageInput);
+            }
+            else
+            {
+                var (isValidPassword, MessagePass) = ValidateUserModelPassword(pass);
+                if (isValidPassword)
+                {
+                    return (true, string.Empty);
+                }
+                else
+                {
+                    return (false, MessagePass);
+                }
+            }
+        }
+
+        private static (bool, string?) ValidateUserModelInputs(UserModel userModel)
+        {
+            var (isValidName, _) = ValidateName(userModel.UserName);
+            var (isValidEmail, _) = ValidateEmail(userModel.UserEmail);
+            var (isValidGender, _) = ValidateGender(userModel.UserGender);
+            var (isValidAge, _) = ValidateAge(userModel.UserAge);
+
+            if(isValidName && isValidEmail && isValidGender && isValidAge)
+            {
+                return (true, string.Empty);
+            }
+            else
+            {
+                return (false, "Invalid fields content, try again!");
+            }
+        }
+
+        private static (bool, string?) ValidateUserModelPassword(string pass)
+        {
+            var (isValidPassword, Message) = ValidatePassword(pass);
+
+            return isValidPassword ? (true, string.Empty) : (false, Message);
         }
     }
 }
